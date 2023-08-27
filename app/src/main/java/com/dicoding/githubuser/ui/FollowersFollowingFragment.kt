@@ -40,7 +40,9 @@ class FollowersFollowingFragment : Fragment() {
             }
         } else {
             userDetailViewModel.userFollowing.observe(viewLifecycleOwner) { following ->
-                setFollowingData(following)
+                if (following != null) {
+                    setFollowingData(following)
+                }
             }
         }
     }
