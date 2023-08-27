@@ -8,6 +8,7 @@
     <string name="following">%1$d following</string>
     <string name="followers_tab">Followers</string>
     <string name="following_tab">Following</string>
+    <string name="textview">TextView</string>
 
 
 </resources>

@@ -13,11 +13,6 @@ class FollowersFollowingFragment : Fragment() {
 
     private val userDetailViewModel by activityViewModels<UserDetailViewModel>()
 
-    companion object {
-        const val ARG_POSITION: String = "arg_position"
-        const val ARG_USERNAME: String = "arg_username"
-    }
-
     private lateinit var followersFollowingBinding: FragmentFollowersfollowingBinding
     private var position: Int? = null
     private var username: String? = null
@@ -64,5 +59,9 @@ class FollowersFollowingFragment : Fragment() {
         followersFollowingBinding.rvUsersFollowersFollowing.visibility = View.VISIBLE
     }
 
+    companion object {
+        const val ARG_POSITION: String = "arg_position"
+        const val ARG_USERNAME: String = "arg_username"
+    }
 
 }

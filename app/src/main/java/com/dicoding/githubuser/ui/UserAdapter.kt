@@ -23,18 +23,6 @@ class UserAdapter(private val activity: Activity) :
         }
     }
 
-    companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<User>() {
-            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-                return oldItem == newItem
-            }
-
-            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-                return oldItem == newItem
-            }
-        }
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemRowUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
@@ -50,4 +38,15 @@ class UserAdapter(private val activity: Activity) :
         }
     }
 
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<User>() {
+            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
 }

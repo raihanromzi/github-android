@@ -2,6 +2,7 @@ package com.dicoding.githubuser.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,27 +15,20 @@ class UserFollowerFollowingAdapter :
 
     class MyViewHolder(private val binding: ItemRowUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: UserFollowerFollowing) {
-            binding.tvItemUsername.text = user.login
-            Glide.with(binding.ivItemUserPicture.context).load(user.avatarUrl)
-                .into(binding.ivItemUserPicture)
-        }
-    }
 
-    companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserFollowerFollowing>() {
-            override fun areItemsTheSame(
-                oldItem: UserFollowerFollowing,
-                newItem: UserFollowerFollowing
-            ): Boolean {
-                return oldItem == newItem
+        fun bind(user: UserFollowerFollowing) {
+            fun ImageView.loadImage(url: String) {
+                Glide.with(this.context)
+                    .load(url)
+                    .centerCrop()
+                    .into(this)
             }
 
-            override fun areContentsTheSame(
-                oldItem: UserFollowerFollowing,
-                newItem: UserFollowerFollowing
-            ): Boolean {
-                return oldItem == newItem
+            binding.apply {
+                tvItemUsername.text = user.login
+                ivItemUserPicture.loadImage(
+                    url = user.avatarUrl
+                )
             }
         }
     }
@@ -53,4 +47,21 @@ class UserFollowerFollowingAdapter :
     }
 
 
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UserFollowerFollowing>() {
+            override fun areItemsTheSame(
+                oldItem: UserFollowerFollowing,
+                newItem: UserFollowerFollowing
+            ): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(
+                oldItem: UserFollowerFollowing,
+                newItem: UserFollowerFollowing
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
 }

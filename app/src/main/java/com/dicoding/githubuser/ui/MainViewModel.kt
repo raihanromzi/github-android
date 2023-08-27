@@ -23,11 +23,6 @@ class MainViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    companion object {
-        private const val TAG = "Main ViewModel"
-        private const val DEFAULT_NAME = "raihan"
-    }
-
     fun getUser(query: String = DEFAULT_NAME) {
         val client = ApiConfig.getApiService().getSearchUsers(query)
         client.enqueue(object : Callback<GithubResponse> {
@@ -53,6 +48,11 @@ class MainViewModel : ViewModel() {
             }
 
         })
+    }
+
+    companion object {
+        private const val TAG = "Main ViewModel"
+        private const val DEFAULT_NAME = "raihan"
     }
 
 }

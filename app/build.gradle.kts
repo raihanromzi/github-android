@@ -13,7 +13,8 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
-
+        buildConfigField("String", "KEY", "\"b650046bf640e7bf7054093854b8d02a\"")
+        buildConfigField("String", "BASEURL", "\"https://api.github.com/\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -48,7 +49,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    implementation("com.github.bumptech.glide:glide:4.13.1")
+    implementation("com.github.bumptech.glide:glide:4.15.1")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")

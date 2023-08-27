@@ -18,14 +18,6 @@ class UserDetailActivity : AppCompatActivity() {
     private val userDetailViewModel by viewModels<UserDetailViewModel>()
     private var name: String? = null
 
-    companion object {
-        const val USER_NAME = ""
-        private val TAB_TITLES = intArrayOf(
-            R.string.followers_tab,
-            R.string.following_tab
-        )
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userDetailBinding = ActivityUserDetailBinding.inflate(layoutInflater)
@@ -39,29 +31,33 @@ class UserDetailActivity : AppCompatActivity() {
         }
 
         userDetailViewModel.user.observe(this) { user ->
-            setUserDetailData(user)
+            if (user != null) {
+                setUserDetailData(user)
+            }
         }
     }
 
     private fun setUserDetailData(user: UserDetail) {
-        userDetailBinding.tvRealnameDetail.visibility = View.VISIBLE
-        userDetailBinding.tvRealnameDetail.text = user.name
+        userDetailBinding.apply {
+            tvRealnameDetail.visibility = View.VISIBLE
+            tvRealnameDetail.text = user.name
 
-        userDetailBinding.tvUserNameDetail.visibility = View.VISIBLE
-        userDetailBinding.tvUserNameDetail.text = getString(R.string.username, user.login)
+            tvUserNameDetail.visibility = View.VISIBLE
+            tvUserNameDetail.text = getString(R.string.username, user.login)
 
-        userDetailBinding.tvUserFollowersDetail.visibility = View.VISIBLE
-        userDetailBinding.tvUserFollowersDetail.text = getString(R.string.followers, user.followers)
+            tvUserFollowersDetail.visibility = View.VISIBLE
+            tvUserFollowersDetail.text = getString(R.string.followers, user.followers)
 
-        userDetailBinding.tvUserFollowingDetail.visibility = View.VISIBLE
-        userDetailBinding.tvUserFollowingDetail.text = getString(R.string.following, user.following)
+            tvUserFollowingDetail.visibility = View.VISIBLE
+            tvUserFollowingDetail.text = getString(R.string.following, user.following)
 
-        userDetailBinding.ivUserPictureDetail.visibility = View.VISIBLE
-        Glide.with(userDetailBinding.ivUserPictureDetail.context).load(user.avatarUrl)
-            .into(userDetailBinding.ivUserPictureDetail)
+            ivUserPictureDetail.visibility = View.VISIBLE
+            Glide.with(ivUserPictureDetail.context).load(user.avatarUrl)
+                .into(ivUserPictureDetail)
 
-        userDetailBinding.viewPager.visibility = View.VISIBLE
-        userDetailBinding.tabs.visibility = View.VISIBLE
+            viewPager.visibility = View.VISIBLE
+            tabs.visibility = View.VISIBLE
+        }
         val followersFollowingPagerAdapter = FollowersFollowingPagerAdapter(this)
         followersFollowingPagerAdapter.username = name.toString()
         val viewPager: ViewPager2 = userDetailBinding.viewPager
@@ -74,5 +70,13 @@ class UserDetailActivity : AppCompatActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         userDetailBinding.progressBar2.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    companion object {
+        const val USER_NAME = ""
+        private val TAB_TITLES = intArrayOf(
+            R.string.followers_tab,
+            R.string.following_tab
+        )
     }
 }

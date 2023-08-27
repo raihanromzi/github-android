@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rv_users_followers_following"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.FollowersFollowingFragment">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_users_followers_following"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:visibility="visible" />
-
-</FrameLayout>
+    android:visibility="invisible"
+    tools:context=".ui.FollowersFollowingFragment"
+    tools:visibility="visible" />
